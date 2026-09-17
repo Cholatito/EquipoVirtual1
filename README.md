@@ -1,6 +1,6 @@
 # EquipoVirtual1
 
-API REST con Java 17, Spring Boot, Gradle y PostgreSQL. Paquete base: `pe.edu.upc.equipovirtual1`.
+API REST con Java 17, Spring Boot 4.0.8, Maven y PostgreSQL. Paquete base: `pe.edu.upc.equipovirtual1`.
 
 ## Ejecutar (PowerShell)
 
@@ -11,10 +11,10 @@ $env:JAVA_HOME = 'C:\Users\Acer\.jdks\ms-17.0.20.1'
 $env:DB_URL = 'jdbc:postgresql://localhost:5432/equipovirtual1'
 $env:DB_USERNAME = 'postgres'
 $env:DB_PASSWORD = 'tu_clave'
-.\gradlew.bat bootRun
+.\mvnw.cmd spring-boot:run
 ```
 
-Adapta la ruta del JDK y las credenciales a tu equipo. El toolchain de Gradle está fijado en Java 17.
+Adapta la ruta del JDK y las credenciales a tu equipo. Selecciona un JDK 17 mediante JAVA_HOME; el compilador Maven está configurado con release 17. No necesitas instalar Maven: el Wrapper descarga la versión configurada.
 Swagger UI: http://localhost:8080/swagger-ui.html
 OpenAPI: http://localhost:8080/v3/api-docs
 
@@ -118,14 +118,24 @@ El total de ese evento/categoría será `2 * 10.50 + 3 * 5.00 = 36.00`.
 
 ```powershell
 $env:JAVA_HOME = 'C:\Users\Acer\.jdks\ms-17.0.20.1'
-.\gradlew.bat clean build
+.\mvnw.cmd clean test
 ```
 
 Las pruebas usan H2 en modo PostgreSQL y una configuración separada; no necesitan credenciales ni modifican PostgreSQL. Cubren el contexto, registro, validación, JSON mal formado, consulta nativa y documentación Swagger. H2 no reemplaza una verificación contra PostgreSQL real.
 
+Para generar el JAR ejecutable:
+
+```powershell
+.\mvnw.cmd clean package
+java -jar target\equipovirtual1-0.0.1-SNAPSHOT.jar
+```
+
+Para comprobar la versión de Java que utiliza Maven: `.\mvnw.cmd -v`. Debe mostrar Java 17. En IntelliJ selecciona también JDK 17 como Project SDK y como JDK del runner de Maven, e importa el proyecto desde `pom.xml`.
+
 ## Archivos
 
-- `build.gradle`: conserva Java 17 y dependencias existentes; agrega springdoc y H2 únicamente para pruebas.
+- `pom.xml`: Java 17, Spring Boot 4.0.8, dependencias existentes y plugins de compilación y empaquetado; H2 únicamente para pruebas.
+- `mvnw`, `mvnw.cmd` y `.mvn/wrapper/`: Maven Wrapper 3.3.4 con Maven 3.9.16.
 - `src/main/resources/application.properties`: variables DB_URL, DB_USERNAME y DB_PASSWORD, Hibernate update y Swagger.
 - `entity/`: CulturalEvent, CulturalCategory y CulturalActivity, con JPA, Jakarta Validation y Lombok.
 - `repositories/`: repositorios JPA y consulta SQL nativa de HUB02.
