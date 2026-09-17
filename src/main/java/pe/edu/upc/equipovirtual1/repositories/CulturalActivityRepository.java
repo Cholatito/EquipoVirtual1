@@ -2,7 +2,7 @@ package pe.edu.upc.equipovirtual1.repositories;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.jpa.repository.*;
-import pe.edu.upc.equipovirtual1.models.CulturalActivity;
+import pe.edu.upc.equipovirtual1.entity.CulturalActivity;
 public interface CulturalActivityRepository extends JpaRepository<CulturalActivity, Integer> {
     interface CulturalBudgetProjection {
         String getEventName();

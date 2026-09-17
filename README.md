@@ -127,7 +127,7 @@ Las pruebas usan H2 en modo PostgreSQL y una configuración separada; no necesit
 
 - `build.gradle`: conserva Java 17 y dependencias existentes; agrega springdoc y H2 únicamente para pruebas.
 - `src/main/resources/application.properties`: variables DB_URL, DB_USERNAME y DB_PASSWORD, Hibernate update y Swagger.
-- `models/`: CulturalEvent, CulturalCategory y CulturalActivity, con JPA, Jakarta Validation y Lombok.
+- `entity/`: CulturalEvent, CulturalCategory y CulturalActivity, con JPA, Jakarta Validation y Lombok.
 - `repositories/`: repositorios JPA y consulta SQL nativa de HUB02.
 - `services/CulturalEventService.java`: registro y consulta; las variables de HUB01 contienen e2.
 - `controllers/`: endpoints y manejo global de excepciones.

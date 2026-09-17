@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.equipovirtual1.dto.*;
-import pe.edu.upc.equipovirtual1.models.CulturalCategory;
+import pe.edu.upc.equipovirtual1.entity.CulturalCategory;
 import pe.edu.upc.equipovirtual1.repositories.*;
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package pe.edu.upc.equipovirtual1.models;
+package pe.edu.upc.equipovirtual1.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
